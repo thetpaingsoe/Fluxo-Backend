@@ -1,7 +1,11 @@
 from fastapi import FastAPI
+from .routers import task
+from .database import Base, engine
 
-app = FastAPI()
+# Create tables
+Base.metadata.create_all(bind=engine)
 
-@app.get("/")
-def read_root(): 
-    return {"response" : "success"}
+app = FastAPI(title="Fluxo Task API")
+
+# Include routers
+app.include_router(task.router)
