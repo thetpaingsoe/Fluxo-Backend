@@ -18,11 +18,11 @@ services:
       - fluxo-net
 
   task-service:
-    build: ./fluxo-task-service
+    build: ./task-service
     depends_on:
       db:
         condition: service_healthy
-    env_file: ./fluxo-task-service/.env 
+    env_file: ./task-service/.env 
     expose:
       - "8000"
     environment:

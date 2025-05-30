@@ -12,10 +12,6 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/test/1")
-def test():
-    return {"hello":"Test"}
-
 @router.get("/", response_model=list[schemas.TaskOut])
 def read_tasks(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return crud.get_tasks(db, skip=skip, limit=limit)
